@@ -68,7 +68,26 @@ public class SingleLinkedList {
     }
 
     // reverse the linked list RECURSIVELY
-    public void reverse() {
-        // homework
+    public void reverse()
+    {
+     head.next = reverse(head.next);
+    }
+
+    private ListNode reverse(ListNode node)
+    {
+        if(node == null)//base case 2(empty list)
+        {
+            return null;
+        }
+
+        if(node.next == null)   //last node
+        {
+            return node;    //base case (exit recursion)
+        }
+
+        ListNode n = reverse(node.next);
+        node.next.next = node;  //have next node point back to me
+        node.next = null;   // get rid of existing connection
+        return n;
     }
 }
